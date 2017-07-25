@@ -5,14 +5,14 @@
         <th v-for="oneColumn in columns" v-bind:key="oneColumn.id">
           {{oneColumn.label}}
           <br>
-          <input v-on:input="changeFilteredData(oneColumn.id)" type="text" id="search" v-model="searchField">
+          <input type="text" v-model="oneColumn.search" v-on:input="filteredData()">
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="entry in filteredData" v-bind:key="entry">
-        <td v-for="oneColumn in columns" v-bind:key="oneColumn" class="innerDataTable">
-          {{entry[oneColumn.label]}}
+      <tr v-for="oneRow in startData" v-bind:key="oneRow.id" v-show="isFiltered(oneRow)" >
+        <td v-for="oneColumn in columns" v-bind:key="oneColumn.id" class="innerDataTable">
+          <span>{{collectedData(oneRow, oneColumn)}}</span>
         </td>
       </tr>
     </tbody>
@@ -24,7 +24,6 @@ export default {
   name: 'TestTable',
   data: function () {
     return {
-      searchField: '',
       columns: [
         { id: 1, label: 'Pouet' },
         { id: 2, label: 'Nom' },
@@ -32,11 +31,13 @@ export default {
         { id: 4, label: 'Mail' }
       ],
       startData: [{
+        id: 1,
         'Pouet': 'test',
         'Nom': 'reynaud',
         'Prenom': 'pierre',
         'Mail': 'preynaud@sqli.com'
       }, {
+        id: 2,
         'Pouet': 'test2',
         'Nom': 'reynaud2',
         'Prenom': 'pierre2',
@@ -45,16 +46,26 @@ export default {
       ]
     }
   },
-  computed: {
-    filteredData: function (idOfTheConcernedField) {
-      console.log(this.idOfTheConcernedField)
-      console.log(this.searchField)
-      return this.startData
-    }
-  },
   methods: {
-    changeFilteredData: function () {
-      console.log('test')
+    filteredData: function () {
+      this.$forceUpdate()
+    },
+    collectedData: function (row, column) {
+      return row[column.label]
+    },
+    isFiltered: function (row) {
+      var hasBeenFound = true
+      var i = 0
+      while (i < this.columns.length) {
+        if (this.columns[i].search) {
+          hasBeenFound = false
+          if (row[this.columns[i].label].includes(this.columns[i].search)) {
+            hasBeenFound = true
+          }
+        }
+        i++
+      }
+      return hasBeenFound
     }
   }
 }

@@ -16,7 +16,8 @@ export default new Router({
     {
       path: '/about',
       name: 'About',
-      component: About
+      component: About, 
+      props: { message: 'Bonjour je suis un titre de balise de about'}
     },
     {
       path: '/test-tab',

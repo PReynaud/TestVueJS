@@ -1,11 +1,18 @@
 <template>
   <h1>
-    Bonjour je suis un titre de balise de about
+    {{ message }}
   </h1>
 </template>
 
-<script>
-export default {
-  name: 'About'
+<script lang="ts">
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
+
+@Component({
+  props: {
+    message: String
+  }
+})
+export default class About extends Vue {
 }
 </script>

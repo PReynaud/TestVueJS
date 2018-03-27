@@ -13,7 +13,6 @@
         <li class="nav-item">
           <router-link class="nav-link" :to="'test-tab'">Test table</router-link>
         </li>
-        </li>
         <li class="nav-item">
           <router-link class="nav-link" :to="'about'">About</router-link>
         </li>
@@ -31,13 +30,11 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
 @Component
-export default class CustomHeader extends Vue {
-  
-}
+export default class CustomHeader extends Vue {}
 </script>
 
 <style scoped>
-  .custom-header{
-    margin-bottom: 20px;
-  }
+.custom-header {
+  margin-bottom: 20px;
+}
 </style>

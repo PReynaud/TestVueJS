@@ -13,6 +13,5 @@ import { Component } from 'vue-property-decorator';
     message: String
   }
 })
-export default class About extends Vue {
-}
+export default class About extends Vue {}
 </script>

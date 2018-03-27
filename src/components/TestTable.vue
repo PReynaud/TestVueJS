@@ -24,12 +24,23 @@ import { Component, Vue } from 'vue-property-decorator';
 import StartData from '../class/StartData';
 
 @Component
-export default class TestTable extends Vue{
-  
+export default class TestTable extends Vue {
   data() {
-    const data1 = new StartData(1, 'test', 'reynaud', 'pierre', 'preynaud@test.com');
-    const data2 = new StartData(2, 'test2', 'reynaud2', 'pierre2', 'preynaud2@test.com');
-    
+    const data1 = new StartData(
+      1,
+      'test',
+      'reynaud',
+      'pierre',
+      'preynaud@test.com'
+    );
+    const data2 = new StartData(
+      2,
+      'test2',
+      'reynaud2',
+      'pierre2',
+      'preynaud2@test.com'
+    );
+
     return {
       columns: [
         { id: 1, label: 'pouet' },
@@ -48,19 +59,19 @@ export default class TestTable extends Vue{
   collectedData(row, column) {
     return row[column.label];
   }
-  
+
   isFiltered(row) {
-    var hasBeenFound = true;
-    
-    var i = 0
+    let hasBeenFound = true;
+
+    let i = 0;
     while (i < this.columns.length) {
       if (this.columns[i].search) {
-        hasBeenFound = false
+        hasBeenFound = false;
         if (row[this.columns[i].label].includes(this.columns[i].search)) {
-          hasBeenFound = true
+          hasBeenFound = true;
         }
       }
-      i++
+      i++;
     }
     return hasBeenFound;
   }
@@ -72,4 +83,3 @@ export default class TestTable extends Vue{
   text-align: left;
 }
 </style>
-

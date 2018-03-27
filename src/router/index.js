@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import About from '@/components/About'
-import TestTable from '@/components/TestTable'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Hello from '@/components/Hello';
+import About from '@/components/About';
+import TestTable from '@/components/TestTable';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -16,8 +16,8 @@ export default new Router({
     {
       path: '/about',
       name: 'About',
-      component: About, 
-      props: { message: 'Bonjour je suis un titre de balise de about'}
+      component: About,
+      props: { message: 'Bonjour je suis un titre de balise de about' }
     },
     {
       path: '/test-tab',
@@ -25,4 +25,4 @@ export default new Router({
       component: TestTable
     }
   ]
-})
+});

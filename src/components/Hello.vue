@@ -11,17 +11,18 @@ import Test from '../class/test';
 
 @Component
 export default class App extends Vue {
-  data () {
+  data() {
     const testMessage: Test = new Test('Coucou', 'Pierre');
     return {
       msg: testMessage.test()
-    }
+    };
   }
 }
 </script>
 
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 

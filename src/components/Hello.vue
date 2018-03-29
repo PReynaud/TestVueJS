@@ -1,23 +1,68 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1 v-if="pikachu">{{ pikachu.name }}</h1>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
-import Test from '../class/test';
+// import { Vue, Component } from 'vue-property-decorator';
+// import gql from 'graphql-tag';
 
-@Component
-export default class App extends Vue {
+// @Component
+// export default class App extends Vue {
+//   msg = 'Coucou Pierre';
+//   loading = false;
+//   pokemonList: Array<String> = [];
+
+//   graphQlQuery = gql`
+//         query alligatorQuery($input: String!) {
+//           getAlligator(uuid: $input) {
+//             name
+//           }
+//         }
+//       `;
+
+//   apollo: {
+//     posts: {
+//       query: this.graphQlQuery,
+//     }
+//   }
+// }
+import gql from 'graphql-tag';
+
+export default {
   data() {
-    const testMessage: Test = new Test('Coucou', 'Pierre');
     return {
-      msg: testMessage.test()
+      pikachu: null,
+      loading: false
     };
+  },
+
+  apollo: {
+    pikachu: {
+      query: gql`
+        query pokemon($name: String!) {
+          pokemon(name: $name) {
+            id
+            image
+            number
+            name
+          }
+        }
+      `,
+
+      variables: {
+        name: 'Pikachu'
+      },
+
+      loadingKey: 'loading',
+
+      update: function(data) {
+        return data.pokemon;
+      }
+    }
   }
-}
+};
 </script>
 
 <style scoped>

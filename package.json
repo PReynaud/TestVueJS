@@ -13,9 +13,17 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
   "dependencies": {
+    "apollo-cache-inmemory": "^1.1.12",
+    "apollo-client": "^2.2.8",
+    "apollo-link": "^1.2.1",
+    "apollo-link-context": "^1.0.7",
+    "apollo-link-http": "^1.5.3",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
     "ts-loader": "^3.0.3",
     "typescript": "^2.5.3",
     "vue": "^2.5.2",
+    "vue-apollo": "^3.0.0-beta.5",
     "vue-property-decorator": "^6.0.0",
     "vue-router": "^2.3.1"
   },

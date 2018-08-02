@@ -1,87 +1,73 @@
 <template>
-  <div class="hello">
-    <h1 v-if="pikachu">{{ pikachu.name }}</h1>
+<div>
+  <input v-model="searchTerm" />
+  <a class="button" @click="search">Search</a>
+
+  <div v-if="pokemon">
+    <h1>{{ pokemon.name }}</h1>
+    <h2>{{ pokemon.number }}</h2>
+    <img v-bind:src="pokemon.image"/>
   </div>
+</div>
 </template>
 
-<script lang="ts">
-// import { Vue, Component } from 'vue-property-decorator';
-// import gql from 'graphql-tag';
-
-// @Component
-// export default class App extends Vue {
-//   msg = 'Coucou Pierre';
-//   loading = false;
-//   pokemonList: Array<String> = [];
-
-//   graphQlQuery = gql`
-//         query alligatorQuery($input: String!) {
-//           getAlligator(uuid: $input) {
-//             name
-//           }
-//         }
-//       `;
-
-//   apollo: {
-//     posts: {
-//       query: this.graphQlQuery,
-//     }
-//   }
-// }
+<script>
 import gql from 'graphql-tag';
+
+const loadMutation = gql`
+  query pokemon($search: String) {
+    pokemon(name: $search) {
+      id
+      image
+      number
+      name
+    }
+  }
+`;
 
 export default {
   data() {
     return {
-      pikachu: null,
-      loading: false
+      pokemon: null,
+      searchTerm: 'pikachu',
+      toSearch: 'pikachu'
     };
   },
 
   apollo: {
-    pikachu: {
-      query: gql`
-        query pokemon($name: String!) {
-          pokemon(name: $name) {
-            id
-            image
-            number
-            name
-          }
-        }
-      `,
+    pokemon: {
+      query: loadMutation,
 
-      variables: {
-        name: 'Pikachu'
-      },
-
-      loadingKey: 'loading',
-
-      update: function(data) {
-        return data.pokemon;
+      variables() {
+        return {
+          search: this.toSearch
+        };
       }
+    }
+  },
+
+  methods: {
+    search() {
+      this.toSearch = this.searchTerm;
     }
   }
 };
 </script>
 
 <style scoped>
-h1,
-h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
+.button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 22px;
+  text-align: center;
+  text-decoration: none;
   display: inline-block;
-  margin: 0 10px;
+  font-size: 16px;
 }
 
-a {
-  color: #42b983;
+img {
+  width: 200px;
+  height: 200px;
 }
 </style>

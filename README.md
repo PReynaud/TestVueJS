@@ -1,10 +1,11 @@
 # projet-test
 
 > A Vue.js project
+> Back taken from this project https://github.com/lucasbento/graphql-pokemon
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 

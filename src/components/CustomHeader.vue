@@ -22,7 +22,7 @@
           <router-link class="nav-link" to="about">About</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="complete-table">Pokemon table</router-link>
+          <router-link class="nav-link" v-bind:to="{ name: 'CompleteTable' }">Pokemon table</router-link>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">

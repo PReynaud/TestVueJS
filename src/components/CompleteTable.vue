@@ -15,8 +15,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="pokemon in pokemonList" v-bind:key="pokemon.id">
-            <th scope="row" class="tabCell">{{ pokemon.id }}</th>
+          <tr v-for="pokemon in pokemonList" v-bind:key="pokemon.number">
+            <th scope="row" class="tabCell">
+              <router-link
+                v-bind:to="{ name: 'Detail', params: { id: pokemon.id }}"
+              >{{ pokemon.number }}</router-link>
+            </th>
             <th class="tabCell">{{ pokemon.name }}</th>
             <th class="tabCell">
               <img class="tabImage" v-bind:src="pokemon.image">

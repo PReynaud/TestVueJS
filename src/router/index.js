@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import About from '@/components/About';
 import TestTable from '@/components/TestTable';
 import CompleteTable from '@/components/CompleteTable';
+import Detail from '@/components/Detail';
 
 Vue.use(Router);
 
@@ -24,6 +25,12 @@ export default new Router({
       path: '/complete-table',
       name: 'CompleteTable',
       component: CompleteTable
+    },
+    {
+      path: '/detail/:id',
+      name: 'Detail',
+      component: Detail,
+      props: true
     }
   ]
 });

@@ -20,8 +20,32 @@ export default class PokemonService extends BasicService {
       })
       .then(results => {
         let pokemons = results.data.pokemons;
-        pokemons = pokemons.map(p => new Pokemon(p.number, p.name, p.image));
+        pokemons = pokemons.map(
+          p => new Pokemon(p.id, p.number, p.name, p.image)
+        );
         return pokemons;
+      });
+  }
+
+  private fetchPokemon(query: string, parameter: string): Promise<Pokemon> {
+    return this.apolloClient
+      .query({
+        query,
+        variables: {
+          search: parameter
+        }
+      })
+      .then(result => {
+        console.log('result', result);
+        let pokemonResult = result.data.pokemon;
+        if (pokemonResult) {
+          return new Pokemon(
+            pokemonResult.id,
+            pokemonResult.number,
+            pokemonResult.name,
+            pokemonResult.image
+          );
+        }
       });
   }
 
@@ -36,22 +60,20 @@ export default class PokemonService extends BasicService {
         }
       }
     `;
-    return this.apolloClient
-      .query({
-        query: GET_FROM_NAME,
-        variables: {
-          search: name
+    return this.fetchPokemon(GET_FROM_NAME, name);
+  }
+
+  fetchPokemonFromId(id: string): Promise<Pokemon> {
+    const GET_FROM_ID = gql`
+      query pokemon($search: String) {
+        pokemon(id: $search) {
+          id
+          image
+          number
+          name
         }
-      })
-      .then(result => {
-        if (result) {
-          let pokemonResult = result.data.pokemon;
-          return new Pokemon(
-            pokemonResult.number,
-            pokemonResult.name,
-            pokemonResult.image
-          );
-        }
-      });
+      }
+    `;
+    return this.fetchPokemon(GET_FROM_ID, id);
   }
 }

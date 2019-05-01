@@ -1,19 +1,20 @@
 <template>
-<div>
-  <input v-model="searchTerm" />
-  <a class="button" @click="search">Search</a>
+  <div>
+    <input v-model="searchTerm">
+    <a class="button" @click="search">Search</a>
 
-  <div v-if="pokemon">
-    <h1>{{ pokemon.name }}</h1>
-    <h2>{{ pokemon.number }}</h2>
-    <img v-bind:src="pokemon.image"/>
+    <div v-if="pokemon">
+      <h1>{{ pokemon.name }}</h1>
+      <h2>{{ pokemon.number }}</h2>
+      <img v-bind:src="pokemon.image">
+    </div>
   </div>
-</div>
 </template>
 
 <script>
 import gql from 'graphql-tag';
 
+/* Keep this file to have an example with mutation in Vue component */
 const loadMutation = gql`
   query pokemon($search: String) {
     pokemon(name: $search) {

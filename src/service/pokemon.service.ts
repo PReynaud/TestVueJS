@@ -6,7 +6,7 @@ export default class PokemonService extends BasicService {
   fetchAllPokemon(): Promise<Pokemon[]> {
     const GET_ALL_QUERY = gql`
       query {
-        pokemons(first: 10) {
+        pokemons {
           id
           image
           number
@@ -66,7 +66,7 @@ export default class PokemonService extends BasicService {
   fetchPokemonFromId(id: string): Promise<Pokemon> {
     const GET_FROM_ID = gql`
       query pokemon($search: String) {
-        pokemon(id: $search) {
+        pokemon(pokemonId: $search) {
           id
           image
           number

@@ -18,7 +18,7 @@
           <tr v-for="pokemon in pokemonList" v-bind:key="pokemon.number">
             <th scope="row" class="tabCell">
               <router-link
-                v-bind:to="{ name: 'Detail', params: { id: pokemon.id }}"
+                v-bind:to="{ name: 'Detail', params: { id: pokemon.number }}"
               >{{ pokemon.number }}</router-link>
             </th>
             <th class="tabCell">{{ pokemon.name }}</th>

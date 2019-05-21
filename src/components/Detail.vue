@@ -22,7 +22,7 @@ export default class Detail extends Vue {
 
   pokemonService: PokemonService = new PokemonService();
 
-  currentPokemon: Pokemon; // TODO Not totally working yet
+  currentPokemon: Pokemon = null;
 
   mounted() {
     this.pokemonService.fetchPokemonFromId(this.id).then(response => {
@@ -35,7 +35,7 @@ export default class Detail extends Vue {
 
 <style>
 .card-img-top {
-  resize: none;
+  object-fit: scale-down;
 }
 </style>
 

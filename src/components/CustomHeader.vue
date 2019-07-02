@@ -24,6 +24,9 @@
         <li class="nav-item">
           <router-link class="nav-link" v-bind:to="{ name: 'CompleteTable' }">Pokemon table</router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link" v-bind:to="{ name: 'TicTacToe' }">Tic Tac Toe</router-link>
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search">

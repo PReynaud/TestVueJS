@@ -4,6 +4,7 @@ import About from '@/components/About';
 import TestTable from '@/components/TestTable';
 import CompleteTable from '@/components/CompleteTable';
 import Detail from '@/components/Detail';
+import TicTacToe from '@/components/TicTacToe';
 
 Vue.use(Router);
 
@@ -31,6 +32,11 @@ export default new Router({
       name: 'Detail',
       component: Detail,
       props: true
+    },
+    {
+      path: '/tic',
+      name: 'TicTacToe',
+      component: TicTacToe
     }
   ]
 });
